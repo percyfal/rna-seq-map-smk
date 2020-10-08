@@ -1,0 +1,20 @@
+$schema: "http://json-schema.org/draft-08/schema#"
+description: row of the units.tsv, representing a sequencing unit, i.e. single-end or paired-end data
+type: object
+properties:
+  sample:
+    type: string
+    description: sample name/id the unit has been sequenced from
+  unit:
+    type: string
+    description: unit id
+  fasta:
+    type: string
+    description: path to FASTA file containing transcripts
+  platform:
+    type: string
+    enum: ["CAPILLARY", "LS454", "ILLUMINA", "SOLID", "HELICOS", "IONTORRENT", "ONT", "PACBIO"]
+required:
+  - sample
+  - unit
+  - fasta

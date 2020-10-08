@@ -1,0 +1,18 @@
+$schema: "http://json-schema.org/draft-08/schema#"
+
+description: an entry in the sample sheet
+
+# columns that the config/samples.tsv file can have and which type they should be
+properties:
+  sample:
+    type: string
+    description: sample name/identifier
+  tissue:
+    type: string
+    description: sample tissue type
+  species:
+    type: string
+    description: sample species
+
+required:
+  - sample
