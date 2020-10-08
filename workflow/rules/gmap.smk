@@ -7,11 +7,15 @@ rule gmap_build:
     conda:
         "../envs/gmap.yaml"
     cache: True
+    resources:
+        runtime = lambda wildcards, attempt: attempt * config["gmap"]["build"]["runtime"],
+        mem_mb = config["gmap"]["build"]["mem_mb"]
+    threads:
+        1
     log:
         "logs/gmap_build/{genome}.log"
     wrapper:
-        "file:///home/peru/dev/snakemake-workflows/rna-seq-map-smk/workflow/wrappers/bio/gmap/build"
-
+        "https://raw.githubusercontent.com/percyfal/rna-seq-map-smk/main/workflow/wrappers/bio/gmap/build"
 
 rule gmap_map:
     """Map transcriptome to genome database"""
@@ -23,12 +27,15 @@ rule gmap_map:
         log = "logs/gmap_build/{genome}.log"
     conda:
         "../envs/gmap.yaml"
+    resources:
+        runtime = lambda wildcards, attempt: attempt * config["gmap"]["map"]["runtime"],
+        mem_mb = config["gmap"]["map"]["mem_mb"]
     threads:
-        1
+        lambda wildcards, attempt: attempt * config["gmap"]["map"]["threads"]
     log:
         "logs/gmap_map/{genome}-{sample}.psl.log"
     wrapper:
-        "file:///home/peru/dev/snakemake-workflows/rna-seq-map-smk/workflow/wrappers/bio/gmap/map"
+        "https://raw.githubusercontent.com/percyfal/rna-seq-map-smk/main/workflow/wrappers/bio/gmap/map"
 
 
 rule gmap_unzip_fasta:
