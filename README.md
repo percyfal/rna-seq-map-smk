@@ -1,6 +1,7 @@
 # Snakemake workflow: RNA-Seq mapping
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥5.7.0-brightgreen.svg)](https://snakemake.bitbucket.io)
+
 [![Build Status](https://travis-ci.org/snakemake-workflows/rna-seq-map-smk.svg?branch=master)](https://travis-ci.org/snakemake-workflows/rna-seq-map-smk)
 
 Map RNA-Seq data, supporting multiple mappers.
