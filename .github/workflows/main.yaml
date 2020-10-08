@@ -35,9 +35,9 @@ jobs:
         stagein: |
             rm -rf .test/resources/gmap
         
-    - name: Test report
-      uses: snakemake/snakemake-github-action@v1.10.0
-      with:
-        directory: .test
-        snakefile: workflow/Snakefile
-        args: "-n -p --report report.zip"
+    # - name: Test report
+    #   uses: snakemake/snakemake-github-action@v1.10.0
+    #   with:
+    #     directory: .test
+    #     snakefile: workflow/Snakefile
+    #     args: "-n -p --report report.zip"
