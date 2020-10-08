@@ -27,14 +27,17 @@ jobs:
     - name: Checkout submodules
       uses: textbook/git-checkout-submodule-action@2.0.0
     - name: Test workflow (local test data)
-      uses: snakemake/snakemake-github-action@v1.5.3
+      uses: snakemake/snakemake-github-action@v1.10.0
       with:
         directory: .test
         snakefile: workflow/Snakefile
-        args: "--use-conda --show-failed-logs -j 10 --conda-cleanup-pkgs"
+        args: "--use-conda --show-failed-logs -j 10 --conda-cleanup-pkgs cache --conda-frontend mamba"
+      stagein: |
+          rm -rf .test/resources/gmap
+        
     - name: Test report
-      uses: snakemake/snakemake-github-action@v1.5.3
+      uses: snakemake/snakemake-github-action@v1.10.0
       with:
         directory: .test
         snakefile: workflow/Snakefile
-        args: "--report report.zip
+        args: "--report report.zip"

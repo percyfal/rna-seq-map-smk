@@ -1,0 +1,5 @@
+samples: "config/samples.tsv"
+units: "config/units.tsv"
+ref:
+  genome:
+    db: resources/genome.fasta
