@@ -1,7 +1,7 @@
 # Snakemake workflow: RNA-Seq mapping
 
 [![Snakemake](https://img.shields.io/badge/snakemake-≥5.7.0-brightgreen.svg)](https://snakemake.bitbucket.io)
-![GitHub actions status](https://github.com/percyfal/rna-seq-map-smk/workflows/Tests/badge.svg)
+[![GitHub actions status](https://github.com/percyfal/rna-seq-map-smk/workflows/Tests/badge.svg)](https://github.com/percyfal/rna-seq-map-smk/actions?query=workflow%3ATests)
 
 Map RNA-Seq data, supporting multiple mappers.
 

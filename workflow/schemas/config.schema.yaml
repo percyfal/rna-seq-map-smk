@@ -1,8 +1,31 @@
-$schema: "http://json-schema.org/draft-04/schema#"
+$schema: "http://json-schema.org/draft-07/schema#"
 
 description: snakemake configuration file
 
 type: object
+
+## FIXME: point to snakemake schema utils or something similar with
+## generic schemas for rules and workflows
+definitions:
+  rule:
+    type: object
+    description: generic configuration for rules
+    properties:
+      options:
+        type: [string, array, object]
+        default: ""
+        items:
+          type: string
+      runtime:
+        default: 60
+        type: number
+      threads:
+        default: 1
+        type: number
+      mem_mb:
+        description: Resource that defines assigned memory
+        default: 8192
+        type: number
 
 # possible entries of the config file and which type they should be
 properties:
@@ -10,6 +33,26 @@ properties:
     type: string
   units:
     type: string
+  gmap:
+    type: object
+    description: gmap configuration
+    default: {}
+    properties:
+      resources:
+        type: string
+        description: Where to store gmap resources
+        default: "resources"
+      datainterim:
+        type: string
+        description: Where to store gmap results
+        default: "data/interim"
+      build:
+        $ref: "#/definitions/rule"
+        default: {}
+      map:
+        $ref: "#/definitions/rule"
+        default: {}
+        
 
 # entries that have to be in the config file for successful validation
 required:

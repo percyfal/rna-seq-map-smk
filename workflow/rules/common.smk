@@ -20,19 +20,26 @@ units.index = units.index.set_levels([i.astype(str) for i in units.index.levels]
 validate(units, schema="../schemas/units.schema.yaml")
 
 ##############################
+## Paths
+##############################
+__RESOURCES__ = Path(config["gmap"]["resources"])
+__DATAINTERIM__ = Path(config["gmap"]["datainterim"])
+
+##############################
 ## Wildcard constraints
 ##############################
 wildcard_constraints:
     sample = "|".join(samples.index),
-    unit = "|".join(units["unit"])
-
+    resources = config["gmap"]["resources"],
+    datainterim = config["gmap"]["datainterim"],
+    fa = "(.fa|.fasta)"
 
 ##############################
 ## get functions
 ##############################
 def get_final_output(wildcards):
     """Retrieve a list of the workflow final outputs"""
-    gmap = expand("data/interim/gmap/{db}-{sample}.gmap.psl",
+    gmap = expand("data/interim/gmap/{db}-{sample}.psl",
                   db=list(config["ref"].keys()),
                   sample=samples.index)
     return gmap
